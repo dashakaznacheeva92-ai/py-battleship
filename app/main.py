@@ -84,7 +84,7 @@ class Battleship:
                     deck = ship.get_deck(row, column)
                     if deck.is_alive:
                         line.append(u"\u25A1")
-                    elif ship.is_downed:
+                    elif ship.is_drowned:
                         line.append("x")
                     else:
                         line.append("*")
