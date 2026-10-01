@@ -55,6 +55,7 @@ class Battleship:
             ship = Ship(start, end)
             for deck in ship.decks:
                 self.field[(deck.row, deck.column)] = ship
+        self._validate_field()
 
     def fire(self, location: tuple) -> str:
         # This function should check whether the location
@@ -83,7 +84,7 @@ class Battleship:
                     deck = ship.get_deck(row, column)
                     if deck.is_alive:
                         line.append(u"\u25A1")
-                    elif deck.is_downed:
+                    elif ship.is_downed:
                         line.append("x")
                     else:
                         line.append("*")
@@ -98,7 +99,7 @@ class Battleship:
         counts = {1: 0, 2: 0, 3: 0, 4: 0}
         for ship in ships:
             size = len(ship.decks)
-            if size not in ship.counts:
+            if size not in counts:
                 raise ValueError(f"Invalid ship size: {size}")
             counts[size] += 1
 
